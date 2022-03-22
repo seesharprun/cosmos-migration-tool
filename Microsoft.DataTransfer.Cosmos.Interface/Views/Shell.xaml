@@ -1,0 +1,32 @@
+﻿<Window x:Class="Microsoft.DataTransfer.Cosmos.Interface.Views.Shell"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:prism="http://prismlibrary.com/"
+        xmlns:core="clr-namespace:Microsoft.DataTransfer.Cosmos.Core;assembly=Microsoft.DataTransfer.Cosmos.Core"  
+        Title="Azure Cosmos DB Data Migration Tool" Height="450" Width="800">
+    <Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <TabControl
+                Grid.Row="0"
+                prism:RegionManager.RegionName="{x:Static core:RegionNames.Wizard}">
+                <TabControl.Resources>
+                    <Style TargetType="{x:Type TabItem}">
+                        <Setter Property="Header" Value="{Binding DataContext.Title}" />
+                    </Style>
+                </TabControl.Resources>
+            </TabControl>
+            <StatusBar
+                Grid.Row="1">
+                <StatusBarItem>
+                    <TextBlock>
+                        <Run>Status</Run>
+                    </TextBlock>
+                </StatusBarItem>
+            </StatusBar>
+        </Grid>
+    </Grid>
+</Window>
