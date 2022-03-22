@@ -7,12 +7,23 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Media\Icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="Prism.Unity" Version="8.1.97" />
     <PackageReference Include="Prism.Wpf" Version="8.1.97" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Microsoft.DataTransfer.Cosmos.AdvancedModule\Microsoft.DataTransfer.Cosmos.AdvancedModule.csproj" />
     <ProjectReference Include="..\Microsoft.DataTransfer.Cosmos.Core\Microsoft.DataTransfer.Cosmos.Core.csproj" />
+    <ProjectReference Include="..\Microsoft.DataTransfer.Cosmos.NavigationModule\Microsoft.DataTransfer.Cosmos.NavigationModule.csproj" />
+    <ProjectReference Include="..\Microsoft.DataTransfer.Cosmos.ResultsModule\Microsoft.DataTransfer.Cosmos.ResultsModule.csproj" />
     <ProjectReference Include="..\Microsoft.DataTransfer.Cosmos.SourceModule\Microsoft.DataTransfer.Cosmos.SourceModule.csproj" />
+    <ProjectReference Include="..\Microsoft.DataTransfer.Cosmos.SummaryModule\Microsoft.DataTransfer.Cosmos.SummaryModule.csproj" />
     <ProjectReference Include="..\Microsoft.DataTransfer.Cosmos.TargetModule\Microsoft.DataTransfer.Cosmos.TargetModule.csproj" />
+    <ProjectReference Include="..\Microsoft.DataTransfer.Cosmos.WelcomeModule\Microsoft.DataTransfer.Cosmos.WelcomeModule.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Media\Icon.ico" />
   </ItemGroup>
 </Project>

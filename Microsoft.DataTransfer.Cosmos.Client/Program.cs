@@ -2,8 +2,16 @@
 
 namespace Microsoft.DataTransfer.Cosmos.Client
 {
-    public class Program
+    internal class Program
     {
+        /// <summary>
+        /// Console app to migrate data from a source to a destination
+        /// </summary>
+        /// <param name="source">Source data type</param>
+        /// <param name="target">Target data type</param>
+        /// <param name="sourceConnectionString">Source connection string</param>
+        /// <param name="targetConnectionString">Target connection string</param>
+        /// <returns></returns>
         static async Task Main(
             DataSource source, 
             DataTarget target, 
@@ -12,7 +20,9 @@ namespace Microsoft.DataTransfer.Cosmos.Client
         {
             Console.WriteLine($"Data Source:\t{source}");
             Console.WriteLine($"\tConnection String:\t{sourceConnectionString}");
-            Console.WriteLine();
+            
+            await Console.Out.WriteLineAsync();
+
             Console.WriteLine($"Data Target:\t{target}");
             Console.WriteLine($"\tConnection String:\t{targetConnectionString}");
 

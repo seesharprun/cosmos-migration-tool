@@ -9,9 +9,21 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.DataTransfer.Cosm
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{023D1067-57E5-405A-A396-EB70653C1533}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.DataTransfer.Cosomos.SourceModule", "Microsoft.DataTransfer.Cosomos.SourceModule\Microsoft.DataTransfer.Cosomos.SourceModule.csproj", "{BB7F97F0-6B2E-44F8-ADE1-88B1EE4BD8CA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.DataTransfer.Cosmos.TargetModule", "Microsoft.DataTransfer.Cosmos.TargetModule\Microsoft.DataTransfer.Cosmos.TargetModule.csproj", "{EB1E1541-0AE6-458B-9B1C-FE27928237DC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.DataTransfer.Cosmos.TargetModule", "Microsoft.DataTransfer.Cosmos.TargetModule\Microsoft.DataTransfer.Cosmos.TargetModule.csproj", "{EB1E1541-0AE6-458B-9B1C-FE27928237DC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.DataTransfer.Cosmos.Client", "Microsoft.DataTransfer.Cosmos.Client\Microsoft.DataTransfer.Cosmos.Client.csproj", "{3838E035-3ACB-48D3-B95E-FD63BDEDFFF0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.DataTransfer.Cosmos.SourceModule", "Microsoft.DataTransfer.Cosmos.SourceModule\Microsoft.DataTransfer.Cosmos.SourceModule.csproj", "{73E62867-2B97-4141-98AA-6D79C37358FB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.DataTransfer.Cosmos.WelcomeModule", "Microsoft.DataTransfer.Cosmos.WelcomeModule\Microsoft.DataTransfer.Cosmos.WelcomeModule.csproj", "{DE00C10C-B969-4B98-9073-F0FAFB0B087D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.DataTransfer.Cosmos.NavigationModule", "Microsoft.DataTransfer.Cosmos.NavigationModule\Microsoft.DataTransfer.Cosmos.NavigationModule.csproj", "{CECD9692-269F-40DB-8950-036A6675AF76}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.DataTransfer.Cosmos.AdvancedModule", "Microsoft.DataTransfer.Cosmos.AdvancedModule\Microsoft.DataTransfer.Cosmos.AdvancedModule.csproj", "{42300A63-E4FF-4117-8546-D53FF167BB4E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.DataTransfer.Cosmos.SummaryModule", "Microsoft.DataTransfer.Cosmos.SummaryModule\Microsoft.DataTransfer.Cosmos.SummaryModule.csproj", "{7323A1B0-D64F-4E9B-A22E-69638A116B09}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.DataTransfer.Cosmos.ResultsModule", "Microsoft.DataTransfer.Cosmos.ResultsModule\Microsoft.DataTransfer.Cosmos.ResultsModule.csproj", "{D286FF73-C156-4688-867E-9A70CDAEB656}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,20 +39,50 @@ Global
 		{ADAB0A4E-5D52-4BB3-9880-E353FAE98830}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ADAB0A4E-5D52-4BB3-9880-E353FAE98830}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ADAB0A4E-5D52-4BB3-9880-E353FAE98830}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BB7F97F0-6B2E-44F8-ADE1-88B1EE4BD8CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BB7F97F0-6B2E-44F8-ADE1-88B1EE4BD8CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BB7F97F0-6B2E-44F8-ADE1-88B1EE4BD8CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BB7F97F0-6B2E-44F8-ADE1-88B1EE4BD8CA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EB1E1541-0AE6-458B-9B1C-FE27928237DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EB1E1541-0AE6-458B-9B1C-FE27928237DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EB1E1541-0AE6-458B-9B1C-FE27928237DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EB1E1541-0AE6-458B-9B1C-FE27928237DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3838E035-3ACB-48D3-B95E-FD63BDEDFFF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3838E035-3ACB-48D3-B95E-FD63BDEDFFF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3838E035-3ACB-48D3-B95E-FD63BDEDFFF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3838E035-3ACB-48D3-B95E-FD63BDEDFFF0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73E62867-2B97-4141-98AA-6D79C37358FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73E62867-2B97-4141-98AA-6D79C37358FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73E62867-2B97-4141-98AA-6D79C37358FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73E62867-2B97-4141-98AA-6D79C37358FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE00C10C-B969-4B98-9073-F0FAFB0B087D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE00C10C-B969-4B98-9073-F0FAFB0B087D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE00C10C-B969-4B98-9073-F0FAFB0B087D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE00C10C-B969-4B98-9073-F0FAFB0B087D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CECD9692-269F-40DB-8950-036A6675AF76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CECD9692-269F-40DB-8950-036A6675AF76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CECD9692-269F-40DB-8950-036A6675AF76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CECD9692-269F-40DB-8950-036A6675AF76}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42300A63-E4FF-4117-8546-D53FF167BB4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42300A63-E4FF-4117-8546-D53FF167BB4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42300A63-E4FF-4117-8546-D53FF167BB4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42300A63-E4FF-4117-8546-D53FF167BB4E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7323A1B0-D64F-4E9B-A22E-69638A116B09}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7323A1B0-D64F-4E9B-A22E-69638A116B09}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7323A1B0-D64F-4E9B-A22E-69638A116B09}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7323A1B0-D64F-4E9B-A22E-69638A116B09}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D286FF73-C156-4688-867E-9A70CDAEB656}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D286FF73-C156-4688-867E-9A70CDAEB656}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D286FF73-C156-4688-867E-9A70CDAEB656}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D286FF73-C156-4688-867E-9A70CDAEB656}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{BB7F97F0-6B2E-44F8-ADE1-88B1EE4BD8CA} = {023D1067-57E5-405A-A396-EB70653C1533}
+		{EB1E1541-0AE6-458B-9B1C-FE27928237DC} = {023D1067-57E5-405A-A396-EB70653C1533}
+		{73E62867-2B97-4141-98AA-6D79C37358FB} = {023D1067-57E5-405A-A396-EB70653C1533}
+		{DE00C10C-B969-4B98-9073-F0FAFB0B087D} = {023D1067-57E5-405A-A396-EB70653C1533}
+		{CECD9692-269F-40DB-8950-036A6675AF76} = {023D1067-57E5-405A-A396-EB70653C1533}
+		{42300A63-E4FF-4117-8546-D53FF167BB4E} = {023D1067-57E5-405A-A396-EB70653C1533}
+		{7323A1B0-D64F-4E9B-A22E-69638A116B09} = {023D1067-57E5-405A-A396-EB70653C1533}
+		{D286FF73-C156-4688-867E-9A70CDAEB656} = {023D1067-57E5-405A-A396-EB70653C1533}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A63F527C-1CF8-469E-857F-39B03140A4D3}

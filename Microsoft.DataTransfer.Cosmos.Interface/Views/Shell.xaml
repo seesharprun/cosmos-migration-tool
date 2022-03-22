@@ -3,30 +3,94 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:prism="http://prismlibrary.com/"
         xmlns:core="clr-namespace:Microsoft.DataTransfer.Cosmos.Core;assembly=Microsoft.DataTransfer.Cosmos.Core"  
-        Title="Azure Cosmos DB Data Migration Tool" Height="450" Width="800">
-    <Grid>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
-            <TabControl
-                Grid.Row="0"
-                prism:RegionManager.RegionName="{x:Static core:RegionNames.Wizard}">
-                <TabControl.Resources>
-                    <Style TargetType="{x:Type TabItem}">
-                        <Setter Property="Header" Value="{Binding DataContext.Title}" />
-                    </Style>
-                </TabControl.Resources>
-            </TabControl>
-            <StatusBar
-                Grid.Row="1">
-                <StatusBarItem>
-                    <TextBlock>
-                        <Run>Status</Run>
-                    </TextBlock>
-                </StatusBarItem>
-            </StatusBar>
-        </Grid>
-    </Grid>
+        Title="Azure Cosmos DB Data Migration Tool" Icon="pack://application:,,,/Media/Icon.ico"
+        MinHeight="480" MinWidth="640" Height="600" Width="800">
+    <Window.Resources>
+        <Style x:Key="ActionButton" TargetType="{x:Type Button}">
+            <Setter Property="Margin" Value="8,8,8,8" />
+            <Setter Property="Width" Value="75" />
+        </Style>
+        <Style x:Key="DefaultBorderStyle" TargetType="{x:Type Border}">
+            <Setter Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}" />
+        </Style>
+        <Style x:Key="HeaderStyle" TargetType="{x:Type Border}" BasedOn="{StaticResource DefaultBorderStyle}">
+            <Setter Property="BorderThickness" Value="0,0,0,1" />
+            <Setter Property="Height" Value="70" />
+            <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}" />
+            <Style.Resources>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="VerticalAlignment" Value="Center" />
+                    <Setter Property="Margin" Value="20,0" />
+                    <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
+                    <Setter Property="FontSize" Value="20" />
+                </Style>
+            </Style.Resources>
+        </Style>
+        <Style x:Key="ButtonsPaneStyle" TargetType="{x:Type Border}" BasedOn="{StaticResource DefaultBorderStyle}">
+            <Setter Property="BorderThickness" Value="0,1,0,0" />
+            <Setter Property="Height" Value="40" />
+            <Setter Property="Margin" Value="0" />
+            <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" />
+            <Style.Resources>
+                <Style TargetType="{x:Type DockPanel}">
+                    <Setter Property="Margin" Value="8,0" />
+                    <Setter Property="LastChildFill" Value="False" />
+                </Style>
+            </Style.Resources>
+        </Style>
+        <Style x:Key="StepsListStyle" TargetType="{x:Type Border}" BasedOn="{StaticResource DefaultBorderStyle}">
+            <Setter Property="BorderThickness" Value="0,0,1,0" />
+            <Setter Property="Width" Value="200" />
+        </Style>
+        <Style x:Key="StepContentStyle" TargetType="{x:Type Border}" BasedOn="{StaticResource DefaultBorderStyle}">
+            <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" />
+            <Style.Resources>
+                <Style TargetType="{x:Type ContentPresenter}">
+                    <Setter Property="Margin" Value="5" />
+                </Style>
+            </Style.Resources>
+        </Style>
+    </Window.Resources>
+    <DockPanel>
+        <Border
+            Style="{StaticResource HeaderStyle}"
+            DockPanel.Dock="Top">
+            <TextBlock Text="{Binding Header, Mode=OneWay}" />
+        </Border>
+        <StatusBar
+            DockPanel.Dock="Bottom">
+            <StatusBarItem>
+                <TextBlock>
+                    <Run>Status</Run>
+                </TextBlock>
+            </StatusBarItem>
+        </StatusBar>
+        <Border 
+            Style="{StaticResource ButtonsPaneStyle}"
+            DockPanel.Dock="Bottom">
+            <StackPanel 
+                DockPanel.Dock="Right" 
+                HorizontalAlignment="Right" 
+                Orientation="Horizontal">
+                <Button
+                    Content="Previous"
+                    Style="{StaticResource ActionButton}"/>
+                <Button 
+                    Content="Next"
+                    Style="{StaticResource ActionButton}"/>
+            </StackPanel>
+        </Border>
+        <Border 
+            DockPanel.Dock="Left" 
+            Style="{StaticResource StepsListStyle}">
+            <ContentControl 
+                prism:RegionManager.RegionName="{x:Static core:RegionNames.Navigation}" />
+        </Border>
+        <Border 
+            DockPanel.Dock="Right" 
+            Style="{StaticResource StepContentStyle}">
+            <ContentControl 
+                prism:RegionManager.RegionName="{x:Static core:RegionNames.Content}" />
+        </Border>
+    </DockPanel>
 </Window>

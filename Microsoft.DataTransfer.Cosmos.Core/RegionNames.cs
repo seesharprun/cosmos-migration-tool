@@ -2,6 +2,8 @@
 {
     public static class RegionNames
     {
-        public static string Wizard = "WizardRegion";
+        public static string Content = "ContentRegion";
+
+        public static string Navigation = "NavigationRegion";
     }
 }

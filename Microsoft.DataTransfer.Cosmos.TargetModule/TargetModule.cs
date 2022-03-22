@@ -11,7 +11,7 @@ namespace Microsoft.DataTransfer.Cosmos.TargetModule
         public void OnInitialized(IContainerProvider provider)
         {
             var regionManager = provider.Resolve<IRegionManager>();
-            regionManager.RegisterViewWithRegion<TargetManagerView>(RegionNames.Wizard);
+            regionManager.RegisterViewWithRegion<TargetManagerView>(RegionNames.Content);
         }
 
         public void RegisterTypes(IContainerRegistry registry)

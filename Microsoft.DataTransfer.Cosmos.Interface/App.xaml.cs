@@ -1,5 +1,4 @@
-﻿using Microsoft.DataTransfer.Cosmos.Interface.Services;
-using Microsoft.DataTransfer.Cosmos.Interface.Views;
+﻿using Microsoft.DataTransfer.Cosmos.Interface.Views;
 using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Unity;
@@ -14,13 +13,17 @@ namespace Microsoft.DataTransfer.Cosmos.Interface
 
         protected override void RegisterTypes(IContainerRegistry registery)
         {
-            registery.Register<IAlphabetStore, InMemoryAlphabetStore>();
         }
 
         protected override void ConfigureModuleCatalog(IModuleCatalog catalog)
         {
+            catalog.AddModule<Microsoft.DataTransfer.Cosmos.NavigationModule.NavigationModule>();
+            catalog.AddModule<Microsoft.DataTransfer.Cosmos.WelcomeModule.WelcomeModule>();
             catalog.AddModule<Microsoft.DataTransfer.Cosmos.SourceModule.SourceModule>();
             catalog.AddModule<Microsoft.DataTransfer.Cosmos.TargetModule.TargetModule>();
+            catalog.AddModule<Microsoft.DataTransfer.Cosmos.AdvancedModule.AdvancedModule>();
+            catalog.AddModule<Microsoft.DataTransfer.Cosmos.SummaryModule.SummaryModule>();
+            catalog.AddModule<Microsoft.DataTransfer.Cosmos.ResultsModule.ResultsModule>();
         }
     }
 }

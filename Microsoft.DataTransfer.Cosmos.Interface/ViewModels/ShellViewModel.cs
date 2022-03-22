@@ -1,40 +1,34 @@
-using Microsoft.DataTransfer.Cosmos.Interface.Services;
-using Prism.Commands;
+using Microsoft.DataTransfer.Cosmos.Core.Events;
+using Prism.Events;
 using Prism.Mvvm;
-using System.Collections.ObjectModel;
 
 namespace Microsoft.DataTransfer.Cosmos.Interface.ViewModels
 {
     public class ShellViewModel : BindableBase
     {
-        private IAlphabetStore _alphabetStore;
+        private IEventAggregator _eventAggregator;
 
-        public ShellViewModel(IAlphabetStore alphabetStore)
+        public ShellViewModel(IEventAggregator eventAggregator)
         {
-            _alphabetStore = alphabetStore;
+            _eventAggregator = eventAggregator;
+
+            _eventAggregator.GetEvent<UpdateHeaderEvent>().Subscribe(OnUpdateHeader);
         }
 
-        public ObservableCollection<string> Alphabet { get; private set;} = new ();
+        private void OnUpdateHeader(string parameter) =>
+            Header = parameter;
 
-        private string _selectedLetter = String.Empty;
-        public string SelectedLetter
+        private string _header = "Welcome";
+        public string Header
         {
-            get => _selectedLetter;
+            get => _header;
             set
             {
-                if (value is not null) 
+                if (value is not null)
                 {
-                    SetProperty<string>(ref _selectedLetter, value);
+                    SetProperty<string>(ref _header, value);
                 }
             }
-        }
-
-        public DelegateCommand LoadCommand => new DelegateCommand(LoadExecute);
-
-        private void LoadExecute()
-        {
-            Alphabet.Clear();
-            Alphabet.AddRange(_alphabetStore.GetAllLetters());
         }
     }
 }
