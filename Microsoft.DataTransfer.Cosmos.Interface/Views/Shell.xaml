@@ -7,6 +7,11 @@
         MinHeight="480" MinWidth="640" Height="600" Width="800">
     <Window.Resources>
         <Style x:Key="ActionButton" TargetType="{x:Type Button}">
+            <Style.Triggers>
+                <Trigger Property="IsEnabled" Value="false">
+                    <Setter Property="Visibility" Value="Hidden" />
+                </Trigger>
+            </Style.Triggers>
             <Setter Property="Margin" Value="8,8,8,8" />
             <Setter Property="Width" Value="75" />
         </Style>
@@ -55,13 +60,13 @@
         <Border
             Style="{StaticResource HeaderStyle}"
             DockPanel.Dock="Top">
-            <TextBlock Text="{Binding Header, Mode=OneWay}" />
+            <TextBlock Text="{Binding Header, Mode=OneWay, FallbackValue=Welcome}" />
         </Border>
         <StatusBar
             DockPanel.Dock="Bottom">
             <StatusBarItem>
-                <TextBlock>
-                    <Run>Status</Run>
+                <TextBlock FontStyle="Italic">
+                    <Run FontWeight="Bold" Text="{Binding Status, Mode=OneWay}" />
                 </TextBlock>
             </StatusBarItem>
         </StatusBar>
@@ -74,10 +79,14 @@
                 Orientation="Horizontal">
                 <Button
                     Content="Previous"
-                    Style="{StaticResource ActionButton}"/>
+                    Style="{StaticResource ActionButton}"
+                    Command="{Binding NavigateCommand, Mode=OneWay}"
+                    CommandParameter="{Binding PreviousNavigationTarget, Mode=OneWay}"/>
                 <Button 
                     Content="Next"
-                    Style="{StaticResource ActionButton}"/>
+                    Style="{StaticResource ActionButton}"
+                    Command="{Binding NavigateCommand, Mode=OneWay}"
+                    CommandParameter="{Binding NextNavigationTarget, Mode=OneWay, FallbackValue=WelcomeView}"/>
             </StackPanel>
         </Border>
         <Border 

@@ -27,6 +27,8 @@ namespace Microsoft.DataTransfer.Cosmos.WelcomeModule.ViewModels
         public void OnNavigatedTo(NavigationContext context)
         {
             _eventAggregator.GetEvent<UpdateHeaderEvent>().Publish("Welcome");
+            _eventAggregator.GetEvent<SetButtonNavigateEvent>().Publish((NavigationButton.Previous, null));
+            _eventAggregator.GetEvent<SetButtonNavigateEvent>().Publish((NavigationButton.Next, ViewNames.SourceManager));
         }
 
         public void OnNavigatedFrom(NavigationContext context)

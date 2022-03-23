@@ -1,4 +1,5 @@
-﻿using Microsoft.DataTransfer.Cosmos.Core.Events;
+﻿using Microsoft.DataTransfer.Cosmos.Core;
+using Microsoft.DataTransfer.Cosmos.Core.Events;
 using Prism.Events;
 using Prism.Mvvm;
 using Prism.Regions;
@@ -22,6 +23,8 @@ namespace Microsoft.DataTransfer.Cosmos.SourceModule.ViewModels
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
             _eventAggregator.GetEvent<UpdateHeaderEvent>().Publish("Source information");
+            _eventAggregator.GetEvent<SetButtonNavigateEvent>().Publish((NavigationButton.Previous, ViewNames.Welcome));
+            _eventAggregator.GetEvent<SetButtonNavigateEvent>().Publish((NavigationButton.Next, ViewNames.TargetManager));
         }
 
         public void OnNavigatedFrom(NavigationContext navigationContext)

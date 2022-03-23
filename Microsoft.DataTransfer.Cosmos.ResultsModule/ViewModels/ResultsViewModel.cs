@@ -1,4 +1,5 @@
-﻿using Microsoft.DataTransfer.Cosmos.Core.Events;
+﻿using Microsoft.DataTransfer.Cosmos.Core;
+using Microsoft.DataTransfer.Cosmos.Core.Events;
 using Prism.Events;
 using Prism.Mvvm;
 using Prism.Regions;
@@ -22,6 +23,9 @@ namespace Microsoft.DataTransfer.Cosmos.ResultsModule.ViewModels
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
             _eventAggregator.GetEvent<UpdateHeaderEvent>().Publish("Results");
+            _eventAggregator.GetEvent<UpdateStatusEvent>().Publish("Congratulations on your migration!");
+            _eventAggregator.GetEvent<SetButtonNavigateEvent>().Publish((NavigationButton.Previous, ViewNames.Summary));
+            _eventAggregator.GetEvent<SetButtonNavigateEvent>().Publish((NavigationButton.Next, null));
         }
 
         public void OnNavigatedFrom(NavigationContext navigationContext)
