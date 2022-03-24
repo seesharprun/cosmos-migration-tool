@@ -13,14 +13,14 @@ namespace Microsoft.DataTransfer.Cosmos.Client
         /// <param name="targetConnectionString">Target connection string</param>
         /// <returns></returns>
         static async Task Main(
-            DataSource source, 
-            DataTarget target, 
-            string sourceConnectionString, 
+            DataSource source,
+            DataTarget target,
+            string sourceConnectionString,
             string targetConnectionString)
         {
             Console.WriteLine($"Data Source:\t{source}");
             Console.WriteLine($"\tConnection String:\t{sourceConnectionString}");
-            
+
             await Console.Out.WriteLineAsync();
 
             Console.WriteLine($"Data Target:\t{target}");
@@ -28,5 +28,5 @@ namespace Microsoft.DataTransfer.Cosmos.Client
 
             // --source mongo --target cosmossql --source-connection-string 'mongodb://<dbuser>:<dbpassword>@<host>:<port>/<database>' --target-connection-string 'AccountEndpoint=<cosmos-endpoint>;AccountKey=<cosmos-key>;Database=<cosmos-database>;'
         }
-    }    
+    }
 }

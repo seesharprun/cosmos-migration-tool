@@ -2,5 +2,5 @@
 
 namespace Microsoft.DataTransfer.Cosmos.Core.Events
 {
-    public class UpdateHeadersEvent : PubSubEvent<(string header, string title)> {}
+    public class UpdateHeadersEvent : PubSubEvent<(string header, string title)> { }
 }

@@ -27,7 +27,7 @@ namespace Microsoft.DataTransfer.Cosmos.NavigationModule.ViewModels
 
             Links.Clear();
             Links.AddRange(_linkService.GetLinkData());
-            CurrentLink = new ("Welcome", ViewNames.Welcome, false);
+            CurrentLink = new("Welcome", ViewNames.Welcome, false);
         }
 
         private void OnUpdateNavigation(string? view)
@@ -38,9 +38,9 @@ namespace Microsoft.DataTransfer.Cosmos.NavigationModule.ViewModels
             }
         }
 
-        public ObservableCollection<Link> Links { get; private set; } = new ();
+        public ObservableCollection<Link> Links { get; private set; } = new();
 
-        private Link _currentLink = new ("Welcome", ViewNames.Welcome, false);
+        private Link _currentLink = new("Welcome", ViewNames.Welcome, false);
         public Link CurrentLink
         {
             get => _currentLink;

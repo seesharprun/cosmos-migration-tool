@@ -32,14 +32,14 @@ namespace Microsoft.DataTransfer.Cosmos.JsonImportModule.ViewModels
         }
 
         public DelegateCommand FinalizeUrlInputCommand =>
-            new (FinalizeUrlInputExecute);
+            new(FinalizeUrlInputExecute);
 
         public void FinalizeUrlInputExecute()
         {
             DialogParameters parameters = new DialogParameters();
             parameters.Add("url-input", UrlInput);
 
-            DialogResult result = new (ButtonResult.OK, parameters);
+            DialogResult result = new(ButtonResult.OK, parameters);
 
             RequestClose?.Invoke(result);
         }

@@ -10,7 +10,7 @@ namespace Microsoft.DataTransfer.Cosmos.NavigationModule
     public class NavigationModule : IModule
     {
         public void OnInitialized(IContainerProvider containerProvider)
-        {           
+        {
             var regionManager = containerProvider.Resolve<IRegionManager>();
             regionManager.RegisterViewWithRegion<NavigationView>(RegionNames.Navigation);
         }

@@ -42,7 +42,7 @@ namespace Microsoft.DataTransfer.Cosmos.SourceModule.ViewModels
         {
         }
 
-        public ObservableCollection<Source> Sources { get; private set; } = new ();
+        public ObservableCollection<Source> Sources { get; private set; } = new();
 
         private string _currentSourceView = ViewNames.JsonImport;
         public string CurrentSourceView

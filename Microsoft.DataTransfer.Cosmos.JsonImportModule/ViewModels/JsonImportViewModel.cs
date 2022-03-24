@@ -17,10 +17,10 @@ namespace Microsoft.DataTransfer.Cosmos.JsonImportModule.ViewModels
             _dialogService = dialogService;
         }
 
-        public ObservableCollection<Item> Items { get; private set; } = new ();
+        public ObservableCollection<Item> Items { get; private set; } = new();
 
         public DelegateCommand<Item> RemoveItemCommand =>
-            new (RemoveItemExecute);
+            new(RemoveItemExecute);
 
         public void RemoveItemExecute(Item target)
         {
@@ -28,7 +28,7 @@ namespace Microsoft.DataTransfer.Cosmos.JsonImportModule.ViewModels
         }
 
         public DelegateCommand ClearItemsCommand =>
-            new (ClearItemsExecute);
+            new(ClearItemsExecute);
 
         public void ClearItemsExecute()
         {
@@ -36,11 +36,11 @@ namespace Microsoft.DataTransfer.Cosmos.JsonImportModule.ViewModels
         }
 
         public DelegateCommand AddFileItemCommand =>
-            new (AddFileItemExecute);
+            new(AddFileItemExecute);
 
         public void AddFileItemExecute()
         {
-            OpenFileDialog dialog = new ()
+            OpenFileDialog dialog = new()
             {
                 Multiselect = true,
                 Filter = "JSON Documents|*.json",
@@ -50,13 +50,13 @@ namespace Microsoft.DataTransfer.Cosmos.JsonImportModule.ViewModels
             if (dialog.ShowDialog() ?? false)
             {
                 Items.AddRange<Item>(
-                    dialog.FileNames.Select(f => new Item (ItemType.LocalFile, f))
+                    dialog.FileNames.Select(f => new Item(ItemType.LocalFile, f))
                 );
             }
         }
 
         public DelegateCommand AddURLItemCommand =>
-            new (AddURLItemItemExecute);
+            new(AddURLItemItemExecute);
 
         public void AddURLItemItemExecute()
         {

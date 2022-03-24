@@ -35,14 +35,14 @@ namespace Microsoft.DataTransfer.Cosmos.WelcomeModule.ViewModels
         {
         }
 
-        public DelegateCommand<string> NavigateBrowserCommand => 
-            new (NavigateBrowserExecute);
+        public DelegateCommand<string> NavigateBrowserCommand =>
+            new(NavigateBrowserExecute);
 
         private void NavigateBrowserExecute(string destination)
         {
             if (Uri.TryCreate(destination, UriKind.Absolute, out _))
             {
-                ProcessStartInfo process = new ("cmd", $"/c start {destination}") { CreateNoWindow = true };
+                ProcessStartInfo process = new("cmd", $"/c start {destination}") { CreateNoWindow = true };
                 Process.Start(process);
             }
         }
