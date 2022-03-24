@@ -27,6 +27,7 @@ namespace Microsoft.DataTransfer.Cosmos.NavigationModule.ViewModels
 
             Links.Clear();
             Links.AddRange(_linkService.GetLinkData());
+            CurrentLink = new ("Welcome", ViewNames.Welcome, false);
         }
 
         private void OnUpdateNavigation(string? view)

@@ -27,7 +27,9 @@
                 SelectedValuePath="View"
                 DisplayMemberPath="Name"
                 ItemContainerStyle="{StaticResource ItemContainerStyle}"
-                IsReadOnly="True" />
+                IsReadOnly="True"
+                IsSynchronizedWithCurrentItem="True"
+                IsEditable="False" />
         </StackPanel>
         <ContentControl 
             DockPanel.Dock="Bottom"

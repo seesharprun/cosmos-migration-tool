@@ -9,8 +9,6 @@ namespace Microsoft.DataTransfer.Cosmos.JsonImportModule
 {
     public class JsonImportModule : IModule
     {
-        public object AddUrlDialogViewModel { get; private set; }
-
         public void OnInitialized(IContainerProvider containerProvider)
         {
             var regionManager = containerProvider.Resolve<IRegionManager>();

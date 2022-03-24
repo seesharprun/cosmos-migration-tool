@@ -35,6 +35,7 @@ namespace Microsoft.DataTransfer.Cosmos.SourceModule.ViewModels
 
             Sources.Clear();
             Sources.AddRange(_sourceService.GetSourceData());
+            CurrentSourceView = ViewNames.JsonImport;
         }
 
         public void OnNavigatedFrom(NavigationContext navigationContext)
