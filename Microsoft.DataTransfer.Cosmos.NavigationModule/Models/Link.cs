@@ -1,4 +1,4 @@
 ﻿namespace Microsoft.DataTransfer.Cosmos.NavigationModule.Models
 {
-    public record StepViewPair(string Name, string View);
+    public record Link (string Name, string View, bool ShowWarning);
 }

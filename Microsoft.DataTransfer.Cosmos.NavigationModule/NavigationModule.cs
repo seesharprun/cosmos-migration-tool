@@ -9,15 +9,15 @@ namespace Microsoft.DataTransfer.Cosmos.NavigationModule
 {
     public class NavigationModule : IModule
     {
-        public void OnInitialized(IContainerProvider provider)
+        public void OnInitialized(IContainerProvider containerProvider)
         {           
-            var regionManager = provider.Resolve<IRegionManager>();
+            var regionManager = containerProvider.Resolve<IRegionManager>();
             regionManager.RegisterViewWithRegion<NavigationView>(RegionNames.Navigation);
         }
 
-        public void RegisterTypes(IContainerRegistry registry)
+        public void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            registry.Register<IStepSource, StepSource>();
+            containerRegistry.Register<ILinkService, LinkService>();
         }
     }
 }

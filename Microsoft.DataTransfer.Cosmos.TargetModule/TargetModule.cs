@@ -8,13 +8,13 @@ namespace Microsoft.DataTransfer.Cosmos.TargetModule
 {
     public class TargetModule : IModule
     {
-        public void OnInitialized(IContainerProvider provider)
+        public void OnInitialized(IContainerProvider containerProvider)
         {
-            var regionManager = provider.Resolve<IRegionManager>();
+            var regionManager = containerProvider.Resolve<IRegionManager>();
             regionManager.RegisterViewWithRegion<TargetManagerView>(RegionNames.Content);
         }
 
-        public void RegisterTypes(IContainerRegistry registry)
+        public void RegisterTypes(IContainerRegistry containerRegistry)
         {
         }
     }

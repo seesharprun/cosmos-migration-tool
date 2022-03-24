@@ -3,12 +3,34 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             mc:Ignorable="d" d:DesignHeight="450" d:DesignWidth="600">
-    <TextBlock 
-            FontSize="45" 
-            FontWeight="Bold"
-            Foreground="Red"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            Text="Source information view" />
+             xmlns:prism="http://prismlibrary.com/"
+             xmlns:core="clr-namespace:Microsoft.DataTransfer.Cosmos.Core;assembly=Microsoft.DataTransfer.Cosmos.Core" 
+             mc:Ignorable="d" d:DesignHeight="415" d:DesignWidth="600">
+    <UserControl.Resources>
+        <Style x:Key="SelectorTitle" TargetType="{x:Type Label}">
+            <Setter Property="FontWeight" Value="Bold" />
+        </Style>
+        <Style x:Key="ItemContainerStyle" TargetType="{x:Type ListBoxItem}">
+            <Setter Property="AutomationProperties.Name" Value="{Binding Value.DisplayName}"/>
+        </Style>
+    </UserControl.Resources>
+    <DockPanel>
+        <StackPanel
+            DockPanel.Dock="Top"
+            Orientation="Vertical">
+            <Label
+                Style="{StaticResource SelectorTitle}"
+                Content="Import from:" />
+            <ComboBox
+                ItemsSource="{Binding Sources, Mode=OneWay}"
+                SelectedValue="{Binding CurrentSourceView, FallbackValue={x:Static core:ViewNames.JsonImport}}"
+                SelectedValuePath="View"
+                DisplayMemberPath="Name"
+                ItemContainerStyle="{StaticResource ItemContainerStyle}"
+                IsReadOnly="True" />
+        </StackPanel>
+        <ContentControl 
+            DockPanel.Dock="Bottom"
+            prism:RegionManager.RegionName="{x:Static core:RegionNames.SourceContent}" />
+    </DockPanel>
 </UserControl>

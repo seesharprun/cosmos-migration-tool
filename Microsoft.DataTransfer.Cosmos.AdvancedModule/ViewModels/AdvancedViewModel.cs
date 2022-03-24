@@ -22,7 +22,7 @@ namespace Microsoft.DataTransfer.Cosmos.AdvancedModule.ViewModels
 
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
-            _eventAggregator.GetEvent<UpdateHeaderEvent>().Publish("Advanced");
+            _eventAggregator.GetEvent<UpdateHeadersEvent>().Publish(("Advanced", "Advanced configuration"));
             _eventAggregator.GetEvent<SetButtonNavigateEvent>().Publish((NavigationButton.Previous, ViewNames.TargetManager));
             _eventAggregator.GetEvent<SetButtonNavigateEvent>().Publish((NavigationButton.Next, ViewNames.Summary));
         }

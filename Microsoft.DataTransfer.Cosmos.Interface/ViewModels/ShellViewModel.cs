@@ -17,24 +17,27 @@ namespace Microsoft.DataTransfer.Cosmos.Interface.ViewModels
             _eventAggregator = eventAggregator;
             _regionManager = regionManager;
 
-            _eventAggregator.GetEvent<UpdateHeaderEvent>().Subscribe(OnUpdateHeader);
+            _eventAggregator.GetEvent<UpdateHeadersEvent>().Subscribe(OnUpdateHeaders);
             _eventAggregator.GetEvent<UpdateStatusEvent>().Subscribe(OnUpdateStatus);
             _eventAggregator.GetEvent<SetButtonNavigateEvent>().Subscribe(OnSetButtonNavigate);
         }
 
-        private void OnUpdateHeader(string parameter) =>
-            Header = parameter;
-
-        private void OnUpdateStatus(string parameter) =>
-            Status = parameter;
-
-        private void OnSetButtonNavigate((NavigationButton Button, string? ViewName) parameter)
+        private void OnUpdateHeaders((string Header, string Title) payload)
         {
-            _ = parameter.Button switch
+            Header = payload.Header;
+            Title = payload.Title;
+        }
+
+        private void OnUpdateStatus(string status) =>
+            Status = status;
+
+        private void OnSetButtonNavigate((NavigationButton Button, string? ViewName) payload)
+        {
+            _ = payload.Button switch
             {
-                NavigationButton.Previous => PreviousNavigationTarget = parameter.ViewName,
-                NavigationButton.Next => NextNavigationTarget = parameter.ViewName,
-                _ => throw new ArgumentException(nameof(parameter.Button))
+                NavigationButton.Previous => PreviousNavigationTarget = payload.ViewName,
+                NavigationButton.Next => NextNavigationTarget = payload.ViewName,
+                _ => throw new ArgumentException(nameof(payload.Button))
             };
         }
 
@@ -45,6 +48,16 @@ namespace Microsoft.DataTransfer.Cosmos.Interface.ViewModels
             set
             {
                 SetProperty<string>(ref _header!, value!);
+            }
+        }
+
+        private string? _title = "Azure Cosmos DB Data Migration Tool";
+        public string? Title
+        {
+            get => _title;
+            set
+            {
+                SetProperty<string>(ref _title!, value!);
             }
         }
 
@@ -83,16 +96,16 @@ namespace Microsoft.DataTransfer.Cosmos.Interface.ViewModels
                 .ObservesProperty<string?>(() => NextNavigationTarget)
                 .ObservesProperty<string?>(() => PreviousNavigationTarget);
 
-        private void NavigateExecute(string? parameter)
+        private void NavigateExecute(string? view)
         {
-            if (parameter is not null)
+            if (view is not null)
             {
-                _regionManager.RequestNavigate(RegionNames.Content, parameter);
-                _eventAggregator.GetEvent<UpdateNavigationEvent>().Publish(parameter);
+                _regionManager.RequestNavigate(RegionNames.Content, view);
+                _eventAggregator.GetEvent<UpdateNavigationEvent>().Publish(view);
             }
         }
 
-        public bool CanNavigateExecute(string? parameter) =>
-            parameter is not null;
+        public bool CanNavigateExecute(string? view) =>
+            view is not null;
     }
 }

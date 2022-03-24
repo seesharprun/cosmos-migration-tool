@@ -26,7 +26,7 @@ namespace Microsoft.DataTransfer.Cosmos.WelcomeModule.ViewModels
 
         public void OnNavigatedTo(NavigationContext context)
         {
-            _eventAggregator.GetEvent<UpdateHeaderEvent>().Publish("Welcome");
+            _eventAggregator.GetEvent<UpdateHeadersEvent>().Publish(("Welcome", "Azure Cosmos DB Data Migration Tool"));
             _eventAggregator.GetEvent<SetButtonNavigateEvent>().Publish((NavigationButton.Previous, null));
             _eventAggregator.GetEvent<SetButtonNavigateEvent>().Publish((NavigationButton.Next, ViewNames.SourceManager));
         }
@@ -38,11 +38,11 @@ namespace Microsoft.DataTransfer.Cosmos.WelcomeModule.ViewModels
         public DelegateCommand<string> NavigateBrowserCommand => 
             new (NavigateBrowserExecute);
 
-        private void NavigateBrowserExecute(string parameter)
+        private void NavigateBrowserExecute(string destination)
         {
-            if (Uri.TryCreate(parameter, UriKind.Absolute, out _))
+            if (Uri.TryCreate(destination, UriKind.Absolute, out _))
             {
-                ProcessStartInfo process = new ("cmd", $"/c start {parameter}") { CreateNoWindow = true };
+                ProcessStartInfo process = new ("cmd", $"/c start {destination}") { CreateNoWindow = true };
                 Process.Start(process);
             }
         }

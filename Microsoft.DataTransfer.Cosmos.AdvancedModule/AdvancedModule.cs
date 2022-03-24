@@ -8,13 +8,13 @@ namespace Microsoft.DataTransfer.Cosmos.AdvancedModule
 {
     public class AdvancedModule : IModule
     {
-        public void OnInitialized(IContainerProvider provider)
+        public void OnInitialized(IContainerProvider containerProvider)
         {
-            var regionManager = provider.Resolve<IRegionManager>();
+            var regionManager = containerProvider.Resolve<IRegionManager>();
             regionManager.RegisterViewWithRegion<AdvancedView>(RegionNames.Content);
         }
 
-        public void RegisterTypes(IContainerRegistry registry)
+        public void RegisterTypes(IContainerRegistry containerRegistry)
         {
         }
     }

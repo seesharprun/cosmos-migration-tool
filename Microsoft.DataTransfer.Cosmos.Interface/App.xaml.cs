@@ -11,19 +11,22 @@ namespace Microsoft.DataTransfer.Cosmos.Interface
         protected override Window CreateShell() =>
             Container.Resolve<Shell>();
 
-        protected override void RegisterTypes(IContainerRegistry registery)
+        protected override void RegisterTypes(IContainerRegistry containerRegistery)
         {
         }
 
-        protected override void ConfigureModuleCatalog(IModuleCatalog catalog)
+        protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
         {
-            catalog.AddModule<Microsoft.DataTransfer.Cosmos.NavigationModule.NavigationModule>();
-            catalog.AddModule<Microsoft.DataTransfer.Cosmos.WelcomeModule.WelcomeModule>();
-            catalog.AddModule<Microsoft.DataTransfer.Cosmos.SourceModule.SourceModule>();
-            catalog.AddModule<Microsoft.DataTransfer.Cosmos.TargetModule.TargetModule>();
-            catalog.AddModule<Microsoft.DataTransfer.Cosmos.AdvancedModule.AdvancedModule>();
-            catalog.AddModule<Microsoft.DataTransfer.Cosmos.SummaryModule.SummaryModule>();
-            catalog.AddModule<Microsoft.DataTransfer.Cosmos.ResultsModule.ResultsModule>();
+            moduleCatalog.AddModule<Microsoft.DataTransfer.Cosmos.NavigationModule.NavigationModule>();
+            moduleCatalog.AddModule<Microsoft.DataTransfer.Cosmos.WelcomeModule.WelcomeModule>();
+            moduleCatalog.AddModule<Microsoft.DataTransfer.Cosmos.SourceModule.SourceModule>();
+            moduleCatalog.AddModule<Microsoft.DataTransfer.Cosmos.JsonImportModule.JsonImportModule>();
+            moduleCatalog.AddModule<Microsoft.DataTransfer.Cosmos.CsvImportModule.CsvImportModule>();
+            moduleCatalog.AddModule<Microsoft.DataTransfer.Cosmos.TargetModule.TargetModule>();
+            moduleCatalog.AddModule<Microsoft.DataTransfer.Cosmos.CosmosSqlExportModule.CosmosSqlExportModule>();
+            moduleCatalog.AddModule<Microsoft.DataTransfer.Cosmos.AdvancedModule.AdvancedModule>();
+            moduleCatalog.AddModule<Microsoft.DataTransfer.Cosmos.SummaryModule.SummaryModule>();
+            moduleCatalog.AddModule<Microsoft.DataTransfer.Cosmos.ResultsModule.ResultsModule>();
         }
     }
 }

@@ -16,6 +16,9 @@
   <ItemGroup>
     <ProjectReference Include="..\Microsoft.DataTransfer.Cosmos.AdvancedModule\Microsoft.DataTransfer.Cosmos.AdvancedModule.csproj" />
     <ProjectReference Include="..\Microsoft.DataTransfer.Cosmos.Core\Microsoft.DataTransfer.Cosmos.Core.csproj" />
+    <ProjectReference Include="..\Microsoft.DataTransfer.Cosmos.CosmosSqlExportModule\Microsoft.DataTransfer.Cosmos.CosmosSqlExportModule.csproj" />
+    <ProjectReference Include="..\Microsoft.DataTransfer.Cosmos.CsvImportModule\Microsoft.DataTransfer.Cosmos.CsvImportModule.csproj" />
+    <ProjectReference Include="..\Microsoft.DataTransfer.Cosmos.JsonImportModule\Microsoft.DataTransfer.Cosmos.JsonImportModule.csproj" />
     <ProjectReference Include="..\Microsoft.DataTransfer.Cosmos.NavigationModule\Microsoft.DataTransfer.Cosmos.NavigationModule.csproj" />
     <ProjectReference Include="..\Microsoft.DataTransfer.Cosmos.ResultsModule\Microsoft.DataTransfer.Cosmos.ResultsModule.csproj" />
     <ProjectReference Include="..\Microsoft.DataTransfer.Cosmos.SourceModule\Microsoft.DataTransfer.Cosmos.SourceModule.csproj" />

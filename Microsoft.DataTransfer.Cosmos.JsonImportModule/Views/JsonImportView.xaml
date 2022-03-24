@@ -1,0 +1,142 @@
+﻿<UserControl x:Class="Microsoft.DataTransfer.Cosmos.JsonImportModule.Views.JsonImportView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:m="clr-namespace:Microsoft.DataTransfer.Cosmos.JsonImportModule.Models"
+             mc:Ignorable="d" d:DesignHeight="365" d:DesignWidth="600">
+    <UserControl.Resources>
+        <Style x:Key="PickerButton" TargetType="{x:Type Button}">
+            <Setter Property="Height" Value="25" />
+            <Setter Property="Padding" Value="5,0" />
+            <Setter Property="Margin" Value="5,0,0,0" />
+        </Style>
+        <Style x:Key="FirstPickerButton" TargetType="{x:Type Button}" BasedOn="{StaticResource PickerButton}">
+            <Setter Property="Margin" Value="0" />
+        </Style>
+        <Style x:Key="ButtonsPane" TargetType="{x:Type Grid}">
+            <Setter Property="Margin" Value="0,10,0,5" />
+        </Style>
+        <Style x:Key="SingleLineOptionElement" TargetType="{x:Type CheckBox}">
+            <Setter Property="Margin" Value="0,10,5,0" />
+        </Style>
+        <Style x:Key="TypeIndicator" TargetType="{x:Type ContentControl}">
+            <Setter Property="Margin" Value="0,0,5,0" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Type, UpdateSourceTrigger=PropertyChanged}" Value="{x:Static m:ItemType.LocalFile}">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate>
+                                <Viewbox Stretch="Uniform" Height="12">
+                                    <Canvas Height="96" Width="96">
+                                        <Path Fill="#FF0000" Data="M23 82V14h28v21h22v47H23zm34-65.5L69.5 29H57V16.5zM57 8H17v80h62V30L57 8z" />
+                                    </Canvas>
+                                </Viewbox>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Type, UpdateSourceTrigger=PropertyChanged}" Value="{x:Static m:ItemType.OnlineUrl}">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate>
+                                <Viewbox Stretch="Uniform" Height="12">
+                                    <Canvas Height="96" Width="96">
+                                        <Path Fill="#4472C4" Data="M53.5 79.5c6.5-8 13.7-18.1 14.4-29.5h12c-.9 14.9-12 27-26.4 29.5zM16.1 50h12c.8 11.4 7.9 21.5 14.4 29.5C28.1 77 17 64.9 16.1 50zm26.4-33.5C36 24.5 28.8 34.6 28.1 46h-12c.9-14.9 12-27 26.4-29.5zM50 50h13.9c-.8 10.3-7.5 19.6-13.9 27.5V50zm-4 0v27.5C39.6 69.6 32.9 60.3 32.1 50H46zm4-31.5c6.4 7.9 13.1 17.1 13.9 27.5H50V18.5zM46 46H32.1c.8-10.3 7.5-19.6 13.9-27.5V46zm33.9 0h-12c-.7-11.4-7.9-21.5-14.4-29.5C67.9 19 79 31.1 79.9 46zM48 10c-21 0-38 17-38 38s17 38 38 38 38-17 38-38-17-38-38-38z" />
+                                    </Canvas>
+                                </Viewbox>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Type, UpdateSourceTrigger=PropertyChanged}" Value="{x:Static m:ItemType.AzureStorageBlob}">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate>
+                                <Viewbox Stretch="Uniform" Height="12">
+                                    <Canvas Height="96" Width="96">
+                                        <Path Fill="#37C2B1" Data="M55.5 35h-16v24H27l20.5 24L68 59H55.5V35z" />
+                                        <Path Fill="#37C2B1" Data="M80.6 37.9c-.8-4.9-3.5-9.3-7.5-12.2-4.1-2.9-9.3-4-14.3-3-4.9-7.5-14-11.2-22.7-9.1-8.5 2.2-14.9 9.3-16.2 18-5.6.2-10.9 2.9-14.3 7.4-4 5.6-4.7 12.9-1.9 19.2 2.9 6.2 8.9 10.3 15.7 10.7h7.3L24 65.6l-2.5-2.9h-1.8c-4.5-.3-8.5-3-10.5-7.1-1.9-4.2-1.4-9 1.3-12.8 2.7-3.7 7.2-5.5 11.8-4.8l3.5.6v-3.9c0-7.1 4.8-13.3 11.7-15 6.9-1.7 14 1.7 17.2 8l1.2 2.4 2.5-.9c3.8-1.3 7.9-.7 11.2 1.6 3.2 2.4 5.1 6.1 5.2 10.1V44h4.1c5.1.2 9.1 4.4 9 9.4 0 5.1-4.1 9.2-9.1 9.3h-5.2L71 65.6 68.2 69h10.6c8.1-.2 14.7-6.6 15.2-14.7s-5.4-15.2-13.4-16.4z" />
+                                    </Canvas>
+                                </Viewbox>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="SourceItemList" TargetType="{x:Type ListBox}">
+            <Setter Property="ItemTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <ContentControl
+                                Grid.Column="0"
+                                Style="{StaticResource TypeIndicator}" />
+                            <TextBlock 
+                                Grid.Column="1" 
+                                VerticalAlignment="Center"
+                                Text="{Binding Name}" />
+                            <Button 
+                                Grid.Column="2"
+                                Foreground="Red"
+                                Content="&#10006;"
+                                Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
+                                Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListBox}}, Path=DataContext.RemoveItemCommand}"
+                                CommandParameter="{Binding}" />
+                        </Grid>
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid 
+            Grid.Row="0"
+            Style="{StaticResource ButtonsPane}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <StackPanel
+                Grid.Column="0"
+                Orientation="Horizontal">
+                <Button
+                    Style="{StaticResource FirstPickerButton}"
+                    Content="Add files"
+                    Command="{Binding AddFileItemCommand}" />
+                <Button
+                    Style="{StaticResource PickerButton}"
+                    Content="Add URL"
+                    Command="{Binding AddURLItemCommand}" />
+            </StackPanel>
+            <Button
+                Grid.Column="2"
+                Style="{StaticResource PickerButton}"
+                Content="Clear"
+                Command="{Binding ClearItemsCommand}"/>
+        </Grid>
+        <ListBox
+            Grid.Row="1"
+            HorizontalContentAlignment="Stretch"
+            ItemsSource="{Binding Items}" 
+            Style="{StaticResource SourceItemList}" />
+        <CheckBox
+            Grid.Row="2"
+            Style="{StaticResource SingleLineOptionElement}"
+            Content="Decompress data"
+            IsChecked="{Binding IsCompressed}" />
+    </Grid>
+</UserControl>

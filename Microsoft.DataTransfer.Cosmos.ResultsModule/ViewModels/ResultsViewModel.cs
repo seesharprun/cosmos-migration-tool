@@ -22,7 +22,7 @@ namespace Microsoft.DataTransfer.Cosmos.ResultsModule.ViewModels
 
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
-            _eventAggregator.GetEvent<UpdateHeaderEvent>().Publish("Results");
+            _eventAggregator.GetEvent<UpdateHeadersEvent>().Publish(("Results", "Import results"));
             _eventAggregator.GetEvent<UpdateStatusEvent>().Publish("Congratulations on your migration!");
             _eventAggregator.GetEvent<SetButtonNavigateEvent>().Publish((NavigationButton.Previous, ViewNames.Summary));
             _eventAggregator.GetEvent<SetButtonNavigateEvent>().Publish((NavigationButton.Next, null));

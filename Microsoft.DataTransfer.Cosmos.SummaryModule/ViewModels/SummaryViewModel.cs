@@ -22,7 +22,7 @@ namespace Microsoft.DataTransfer.Cosmos.SummaryModule.ViewModels
 
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
-            _eventAggregator.GetEvent<UpdateHeaderEvent>().Publish("Summary");
+            _eventAggregator.GetEvent<UpdateHeadersEvent>().Publish(("Summary", "Confirm import settings"));
             _eventAggregator.GetEvent<SetButtonNavigateEvent>().Publish((NavigationButton.Previous, ViewNames.Advanced));
             _eventAggregator.GetEvent<SetButtonNavigateEvent>().Publish((NavigationButton.Next, ViewNames.Results));
         }

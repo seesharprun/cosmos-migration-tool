@@ -13,39 +13,39 @@ namespace Microsoft.DataTransfer.Cosmos.NavigationModule.ViewModels
     {
         private IRegionManager _regionManager;
         private IEventAggregator _eventAggregator;
-        private IStepSource _stepSource;
+        private ILinkService _linkService;
 
-        public NavigationViewModel(IRegionManager regionManager, IEventAggregator eventAggregator, IStepSource stepSource)
+        public NavigationViewModel(IRegionManager regionManager, IEventAggregator eventAggregator, ILinkService linkService)
         {
             _regionManager = regionManager;
             _eventAggregator = eventAggregator;
-            _stepSource = stepSource;
+            _linkService = linkService;
 
             _eventAggregator.GetEvent<UpdateNavigationEvent>().Subscribe(OnUpdateNavigation);
 
             _regionManager.RequestNavigate(RegionNames.Content, ViewNames.Welcome);
 
-            Steps.Clear();
-            Steps.AddRange(_stepSource.GetStepAndViewPairs());
+            Links.Clear();
+            Links.AddRange(_linkService.GetLinkData());
         }
 
-        private void OnUpdateNavigation(string? parameter)
+        private void OnUpdateNavigation(string? view)
         {
-            if (parameter is not null)
+            if (view is not null)
             {
-                CurrentStep = Steps.Single(s => s.View == parameter);
+                CurrentLink = Links.Single(s => s.View == view);
             }
         }
 
-        public ObservableCollection<StepViewPair> Steps { get; private set; } = new();
+        public ObservableCollection<Link> Links { get; private set; } = new ();
 
-        private StepViewPair _currentStep = new ("Welcome", ViewNames.Welcome);
-        public StepViewPair CurrentStep
+        private Link _currentLink = new ("Welcome", ViewNames.Welcome, false);
+        public Link CurrentLink
         {
-            get => _currentStep;
+            get => _currentLink;
             set
             {
-                SetProperty<StepViewPair>(ref _currentStep, value);
+                SetProperty<Link>(ref _currentLink, value);
                 _regionManager.RequestNavigate(RegionNames.Content, value.View);
             }
         }

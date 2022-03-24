@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             mc:Ignorable="d" d:DesignHeight="450" d:DesignWidth="600">
+             mc:Ignorable="d" d:DesignHeight="415" d:DesignWidth="600">
     <UserControl.Resources>
         <Style x:Key="Content" TargetType="{x:Type TextBlock}">
             <Setter Property="TextWrapping" Value="Wrap" />
@@ -22,7 +22,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate>
-                        <Viewbox Stretch="Uniform" Width="8" Height="8">
+                        <Viewbox Stretch="Uniform" Height="8">
                             <Canvas Height="2048" Width="2048">
                                 <Path Fill="Blue" Data="M1792 256v640h-128V475l-851 850-90-90 850-851h-421V256h640zm-512 1007h128v529H256V640h529v128H384v896h896v-401z" />
                             </Canvas>

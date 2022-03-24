@@ -2,8 +2,8 @@
 
 namespace Microsoft.DataTransfer.Cosmos.NavigationModule.Services
 {
-    public interface IStepSource
+    public interface ILinkService
     {
-        IEnumerable<StepViewPair> GetStepAndViewPairs();
+        IEnumerable<Link> GetLinkData();
     }
 }
