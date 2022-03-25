@@ -69,7 +69,7 @@ namespace Microsoft.DataTransfer.Cosmos.JsonImportModule.ViewModels
 
             IEnumerable<Item> ParseFiles(string[] input)
             {
-                foreach(string file in input ?? Enumerable.Empty<string>())
+                foreach (string file in input ?? Enumerable.Empty<string>())
                 {
                     // TODO: Implement file checking
                     yield return new Item(ItemType.LocalFile, file);
