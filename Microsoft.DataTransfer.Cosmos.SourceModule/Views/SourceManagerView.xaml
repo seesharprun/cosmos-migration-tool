@@ -11,7 +11,7 @@
             <Setter Property="FontWeight" Value="Bold" />
         </Style>
         <Style x:Key="ItemContainerStyle" TargetType="{x:Type ListBoxItem}">
-            <Setter Property="AutomationProperties.Name" Value="{Binding Value.DisplayName}"/>
+            <Setter Property="AutomationProperties.Name" Value="{Binding Name}"/>
         </Style>
     </UserControl.Resources>
     <DockPanel>

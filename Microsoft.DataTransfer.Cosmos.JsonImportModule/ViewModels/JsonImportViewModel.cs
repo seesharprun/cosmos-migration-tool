@@ -15,6 +15,18 @@ namespace Microsoft.DataTransfer.Cosmos.JsonImportModule.ViewModels
         public JsonImportViewModel(IDialogService dialogService)
         {
             _dialogService = dialogService;
+
+            IsCompressed = false;
+        }
+
+        private bool _isCompressed = false;
+        public bool IsCompressed
+        {
+            get => _isCompressed;
+            set
+            {
+                SetProperty<bool>(ref _isCompressed, value);
+            }
         }
 
         public ObservableCollection<Item> Items { get; private set; } = new();

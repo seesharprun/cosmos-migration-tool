@@ -39,7 +39,7 @@
                         <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightTextBrushKey}" Color="{DynamicResource {x:Static SystemColors.HighlightTextColorKey}}" />
                     </Style.Resources>
                     <Setter Property="Height" Value="25" />
-                    <Setter Property="AutomationProperties.Name" Value="{Binding Title}" />
+                    <Setter Property="AutomationProperties.Name" Value="{Binding Name}" />
                 </Style>
                 <Style TargetType="{x:Type TextBlock}">
                     <Setter Property="Margin" Value="10,0" />

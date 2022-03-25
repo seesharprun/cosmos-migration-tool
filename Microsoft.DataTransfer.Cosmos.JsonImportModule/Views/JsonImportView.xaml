@@ -136,7 +136,7 @@
         <CheckBox
             Grid.Row="2"
             Style="{StaticResource SingleLineOptionElement}"
-            Content="Decompress data"
-            IsChecked="{Binding IsCompressed}" />
+            Content="Decompress GZIP data"
+            IsChecked="{Binding IsCompressed, FallbackValue=False}" />
     </Grid>
 </UserControl>

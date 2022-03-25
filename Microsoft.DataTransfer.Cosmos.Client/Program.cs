@@ -1,7 +1,11 @@
 ﻿using Microsoft.DataTransfer.Cosmos.Client.Models;
+using Microsoft.DataTransfer.Cosmos.Client.Source;
+using Microsoft.DataTransfer.Cosmos.Client.Target;
 using Microsoft.DataTransfer.Cosmos.CosmosSqlExportServiceModule;
 using Microsoft.DataTransfer.Cosmos.CsvImportServiceModule;
 using Microsoft.DataTransfer.Cosmos.JsonImportServiceModule;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 namespace Microsoft.DataTransfer.Cosmos.Client
 {
@@ -23,72 +27,62 @@ namespace Microsoft.DataTransfer.Cosmos.Client
             string targetConnectionString,
             FileInfo inputFile)
         {
+            // Example commands
+            // --source json --input-file '<file-path>.json' --target cosmossql --target-connection-string 'AccountEndpoint=<cosmos-endpoint>;AccountKey=<cosmos-key>;Database=<cosmos-database>;'
+            // --source csv --input-file '<file-path>.csv' --target cosmossql --target-connection-string 'AccountEndpoint=<cosmos-endpoint>;AccountKey=<cosmos-key>;Database=<cosmos-database>;'
+            // --source mongo --source-connection-string 'mongodb://<dbuser>:<dbpassword>@<host>:<port>/<database>' --target cosmossql --target-connection-string 'AccountEndpoint=<cosmos-endpoint>;AccountKey=<cosmos-key>;Database=<cosmos-database>;'
+
+            // 1. Print out input values
+            RenderInput(source, target, sourceConnectionString, targetConnectionString, inputFile);
+
+            // 2. Register services with DI container
+            IServiceProvider container = RegisterServices();
+
+            // 3. Read data from Source using source module
+            bool importSuccess = source switch
+            {
+                DataSource.JSON => await container.GetRequiredService<IJsonImportManager>().ImportAsync(inputFile), 
+                DataSource.CSV => await container.GetRequiredService<ICsvImportManager>().ImportAsync(inputFile),
+                _ => throw new NotImplementedException($"Data source [{source}] not yet implemented")
+            };
+
+            // 4. Transfer data to Target using target module
+            bool exportSuccess = target switch
+            {
+                DataTarget.CosmosSQL => await container.GetRequiredService<ICosmosSqlExportManager>().ImportAsync(targetConnectionString),
+                _ => throw new NotImplementedException($"Data target [{target}] not yet implemented")
+            };
+
+            // 5. Use colorful console output to render result info
+            await Task.CompletedTask;
+        }
+
+        private static void RenderInput(DataSource source, DataTarget target, string sourceConnectionString, string targetConnectionString, FileInfo inputFile)
+        {
             Console.WriteLine($"Data Source:\t\t\t{source}");
             Console.WriteLine($"\tInput File:\t\t{inputFile?.FullName}");
             Console.WriteLine($"\tConnection String:\t{sourceConnectionString}");
 
-            await Console.Out.WriteLineAsync();
+            Console.WriteLine();
 
             Console.WriteLine($"Data Target:\t\t\t{target}");
             Console.WriteLine($"\tConnection String:\t{targetConnectionString}");
-
-            // --source json --input-file '<file-path>.json' --target cosmossql --target-connection-string 'AccountEndpoint=<cosmos-endpoint>;AccountKey=<cosmos-key>;Database=<cosmos-database>;'
-            // --source mongo --source-connection-string 'mongodb://<dbuser>:<dbpassword>@<host>:<port>/<database>' --target cosmossql --target-connection-string 'AccountEndpoint=<cosmos-endpoint>;AccountKey=<cosmos-key>;Database=<cosmos-database>;'
-
-            // 1. Read data from Source using source module
-
-            bool importSuccess = source switch
-            {
-                DataSource.JSON => ValidateJsonImportConfigured(inputFile) ? HandleJsonImport() : throw new ArgumentException($"Import arguments not provided"),
-                DataSource.CSV => ValidateCsvImportConfigured(inputFile) ? HandleCsvImport() : throw new ArgumentException($"Import arguments not provided"),
-                _ => throw new NotImplementedException($"Data source [{source}] not yet implemented")
-            };
-
-            // 2. Transfer data to Target using target module
-
-            bool exportSuccess = target switch
-            {
-                DataTarget.CosmosSQL => ValidateCosmosSqlExportConfigured(targetConnectionString) ? HandleCosmosSqlExport() : throw new ArgumentException($"Export arguments not provided"),
-                _ => throw new NotImplementedException($"Data target [{target}] not yet implemented")
-            };
-
-            // 3. Use colorful console output to render result info
         }
 
-        private static bool ValidateJsonImportConfigured(FileInfo? input) =>
-            input?.Exists ?? false;
-
-        private static bool HandleJsonImport()
+        private static IServiceProvider RegisterServices()
         {
-            JsonImportService jsonImportService = new ();
+            IHost host = Host.CreateDefaultBuilder()
+                .ConfigureServices((_, services) =>
+                    services
+                        .AddScoped<IJsonImportService, JsonImportService>()
+                        .AddScoped<ICsvImportService, CsvImportService>()
+                        .AddScoped<ICosmosSqlExportService, CosmosSqlExportService>()
+                        .AddScoped<IJsonImportManager, JsonImportManager>()
+                        .AddScoped<ICsvImportManager, CsvImportManager>()
+                        .AddScoped<ICosmosSqlExportManager, CosmosSqlExportManager>())
+                .Build();
 
-            // Implement import logic using service
-
-            return true;
-        }
-
-        private static bool ValidateCsvImportConfigured(FileInfo? input) =>
-            input?.Exists ?? false;
-
-        private static bool HandleCsvImport()
-        {
-            CsvImportService importService = new ();
-
-            // Implement import logic using service
-
-            return true;
-        }
-
-        private static bool ValidateCosmosSqlExportConfigured(string connectionString) =>
-            !String.IsNullOrWhiteSpace(connectionString); // TODO: Validate Azure Cosmos DB SQL API connection string
-
-        private static bool HandleCosmosSqlExport()
-        {
-            CosmosSqlExportService exportService = new ();
-
-            // Implement export logic using service
-
-            return true;
+            return host.Services;
         }
     }
 }
