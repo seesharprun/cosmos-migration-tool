@@ -10,8 +10,6 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Microsoft.DataTransfer.Cosmos.Core\Microsoft.DataTransfer.Cosmos.Core.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Services\" />
+    <ProjectReference Include="..\Microsoft.DataTransfer.Cosmos.JsonImportServiceModule\Microsoft.DataTransfer.Cosmos.JsonImportServiceModule.csproj" />
   </ItemGroup>
 </Project>

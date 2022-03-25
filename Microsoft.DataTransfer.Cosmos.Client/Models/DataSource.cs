@@ -6,9 +6,17 @@ namespace Microsoft.DataTransfer.Cosmos.Client.Models
     public enum DataSource
     {
         /// <summary>
+        /// JSON
+        /// </summary>
+        JSON = 0,
+        /// <summary>
+        /// CSV
+        /// </summary>
+        CSV,
+        /// <summary>
         /// Azure Cosmos DB SQL API
         /// </summary>
-        CosmosSQL = 0,
+        CosmosSQL,
         /// <summary>
         /// SQL server or Azure SQL database
         /// </summary>

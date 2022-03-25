@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Microsoft.DataTransfer.Cosmos.Client": {
+      "commandName": "Project",
+      "commandLineArgs": "--source json --input-file 'C:\\Users\\Sidne\\Downloads\\example\\a.json' --target cosmossql"
+    }
+  }
+}
