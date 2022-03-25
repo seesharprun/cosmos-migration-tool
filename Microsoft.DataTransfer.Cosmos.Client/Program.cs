@@ -41,7 +41,7 @@ namespace Microsoft.DataTransfer.Cosmos.Client
             // 3. Read data from Source using source module
             bool importSuccess = source switch
             {
-                DataSource.JSON => await container.GetRequiredService<IJsonImportManager>().ImportAsync(inputFile), 
+                DataSource.JSON => await container.GetRequiredService<IJsonImportManager>().ImportAsync(inputFile),
                 DataSource.CSV => await container.GetRequiredService<ICsvImportManager>().ImportAsync(inputFile),
                 _ => throw new NotImplementedException($"Data source [{source}] not yet implemented")
             };

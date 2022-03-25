@@ -1,4 +1,5 @@
-﻿using Prism.Commands;
+﻿using Microsoft.DataTransfer.Cosmos.JsonImportModule.Models;
+using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Services.Dialogs;
 
@@ -14,12 +15,10 @@ namespace Microsoft.DataTransfer.Cosmos.JsonImportModule.ViewModels
             true;
 
         public void OnDialogClosed()
-        {
-        }
+        { }
 
         public void OnDialogOpened(IDialogParameters parameters)
-        {
-        }
+        { }
 
         private string _urlInput = String.Empty;
         public string UrlInput
@@ -32,12 +31,21 @@ namespace Microsoft.DataTransfer.Cosmos.JsonImportModule.ViewModels
         }
 
         public DelegateCommand FinalizeUrlInputCommand =>
-            new(FinalizeUrlInputExecute);
+            new DelegateCommand(FinalizeUrlInputExecute, FinalizeUrlInputCanExecute)
+                .ObservesProperty<string>(() => UrlInput);
+
+        public bool FinalizeUrlInputCanExecute() =>
+            !String.IsNullOrWhiteSpace(UrlInput);
 
         public void FinalizeUrlInputExecute()
         {
             DialogParameters parameters = new DialogParameters();
-            parameters.Add("url-input", UrlInput);
+
+            string[] urls = UrlInput.Split(Environment.NewLine, StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
+            UrlSet output = new(urls);
+
+            // TODO: Implement URL checking
+            parameters.Add(nameof(UrlSet), output);
 
             DialogResult result = new(ButtonResult.OK, parameters);
 

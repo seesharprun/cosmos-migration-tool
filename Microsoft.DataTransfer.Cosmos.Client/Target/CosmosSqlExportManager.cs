@@ -2,7 +2,7 @@
 
 namespace Microsoft.DataTransfer.Cosmos.Client.Target
 {
-    internal class CosmosSqlExportManager: ICosmosSqlExportManager
+    internal class CosmosSqlExportManager : ICosmosSqlExportManager
     {
         private readonly ICosmosSqlExportService _cosmosSqlExportService;
 

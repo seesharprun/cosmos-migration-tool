@@ -18,6 +18,7 @@ namespace Microsoft.DataTransfer.Cosmos.JsonImportModule
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterDialog<AddURLDialogView, AddURLDialogViewModel>(DialogNames.AddURLDialog);
+            containerRegistry.RegisterDialog<AddAzureStorageBlobDialogView, AddAzureStorageBlobDialogViewModel>(DialogNames.AddAzureStorageBlobDialog);
         }
     }
 }

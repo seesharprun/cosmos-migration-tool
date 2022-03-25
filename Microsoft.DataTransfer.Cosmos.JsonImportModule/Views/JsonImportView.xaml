@@ -66,6 +66,7 @@
             </Style.Triggers>
         </Style>
         <Style x:Key="SourceItemList" TargetType="{x:Type ListBox}">
+            <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled" />
             <Setter Property="ItemTemplate">
                 <Setter.Value>
                     <DataTemplate>
@@ -81,6 +82,8 @@
                             <TextBlock 
                                 Grid.Column="1" 
                                 VerticalAlignment="Center"
+                                TextTrimming="CharacterEllipsis"
+                                TextWrapping="NoWrap"
                                 Text="{Binding Name}" />
                             <Button 
                                 Grid.Column="2"
@@ -94,7 +97,6 @@
                 </Setter.Value>
             </Setter>
         </Style>
-
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -121,6 +123,10 @@
                     Style="{StaticResource PickerButton}"
                     Content="Add URL"
                     Command="{Binding AddURLItemCommand}" />
+                <Button
+                    Style="{StaticResource PickerButton}"
+                    Content="Add Azure Storage Blob"
+                    Command="{Binding AddAzureStorageBlobItemCommand}" />
             </StackPanel>
             <Button
                 Grid.Column="2"
@@ -137,6 +143,7 @@
             Grid.Row="2"
             Style="{StaticResource SingleLineOptionElement}"
             Content="Decompress GZIP data"
-            IsChecked="{Binding IsCompressed, FallbackValue=False}" />
+            IsChecked="{Binding IsCompressed, FallbackValue=False}"
+            Visibility="Hidden" />
     </Grid>
 </UserControl>

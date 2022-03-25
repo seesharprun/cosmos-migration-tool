@@ -29,6 +29,7 @@ namespace Microsoft.DataTransfer.Cosmos.JsonImportModule.ViewModels
             }
         }
 
+        // TODO: Do something with this list of items
         public ObservableCollection<Item> Items { get; private set; } = new();
 
         public DelegateCommand<Item> RemoveItemCommand =>
@@ -62,8 +63,17 @@ namespace Microsoft.DataTransfer.Cosmos.JsonImportModule.ViewModels
             if (dialog.ShowDialog() ?? false)
             {
                 Items.AddRange<Item>(
-                    dialog.FileNames.Select(f => new Item(ItemType.LocalFile, f))
+                    ParseFiles(dialog.FileNames)
                 );
+            }
+
+            IEnumerable<Item> ParseFiles(string[] input)
+            {
+                foreach(string file in input ?? Enumerable.Empty<string>())
+                {
+                    // TODO: Implement file checking
+                    yield return new Item(ItemType.LocalFile, file);
+                }
             }
         }
 
@@ -76,14 +86,50 @@ namespace Microsoft.DataTransfer.Cosmos.JsonImportModule.ViewModels
             {
                 if (result.Result == ButtonResult.OK)
                 {
-                    string urlInput = result.Parameters.GetValue<string>("url-input");
+                    UrlSet urlInput = result.Parameters.GetValue<UrlSet>(nameof(UrlSet));
 
-                    string[] urls = urlInput.Split(Environment.NewLine, StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
                     Items.AddRange<Item>(
-                        urls.Select(u => new Item(ItemType.OnlineUrl, u))
+                        ParseUrls(urlInput)
                     );
                 }
             });
+
+            IEnumerable<Item> ParseUrls(UrlSet input)
+            {
+                foreach (string url in input?.Urls ?? Enumerable.Empty<string>())
+                {
+                    yield return new Item(ItemType.OnlineUrl, url);
+                }
+            }
+        }
+
+        public DelegateCommand AddAzureStorageBlobItemCommand =>
+            new(AddAzureStorageBlobItemItemExecute);
+
+        public void AddAzureStorageBlobItemItemExecute()
+        {
+            _dialogService.ShowDialog(DialogNames.AddAzureStorageBlobDialog, (result) =>
+            {
+                if (result.Result == ButtonResult.OK)
+                {
+                    AzureStorageBlobSet blobInput = result.Parameters.GetValue<AzureStorageBlobSet>(nameof(AzureStorageBlobSet));
+
+                    Items.AddRange<Item>(
+                        ParseBlobs(blobInput)
+                    );
+                }
+            });
+
+            IEnumerable<Item> ParseBlobs(AzureStorageBlobSet input)
+            {
+                foreach (AzureStorageBlob blob in input?.Blobs ?? Enumerable.Empty<AzureStorageBlob>())
+                {
+                    if (blob.PublicBlobEndpoint is not null && blob.SecureBlobEndpoint is not null)
+                    {
+                        yield return new Item(ItemType.AzureStorageBlob, blob.PublicBlobEndpoint.AbsoluteUri, blob.SecureBlobEndpoint.AbsoluteUri);
+                    }
+                }
+            }
         }
     }
 }

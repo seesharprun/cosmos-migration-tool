@@ -92,7 +92,7 @@ namespace Microsoft.DataTransfer.Cosmos.Interface.ViewModels
         }
 
         public DelegateCommand<string?> NavigateCommand =>
-            new DelegateCommand<string?>(NavigateExecute, CanNavigateExecute)
+            new DelegateCommand<string?>(NavigateExecute, NavigateCanExecute)
                 .ObservesProperty<string?>(() => NextNavigationTarget)
                 .ObservesProperty<string?>(() => PreviousNavigationTarget);
 
@@ -105,7 +105,7 @@ namespace Microsoft.DataTransfer.Cosmos.Interface.ViewModels
             }
         }
 
-        public bool CanNavigateExecute(string? view) =>
+        public bool NavigateCanExecute(string? view) =>
             view is not null;
     }
 }
