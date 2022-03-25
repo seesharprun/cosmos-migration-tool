@@ -2,9 +2,9 @@
 
 namespace Microsoft.DataTransfer.Cosmos.CosmosSqlExportModule.Views
 {
-    public partial class CosmosSqlExportView : UserControl
+    public partial class CosmosSqlSequentialExportView : UserControl
     {
-        public CosmosSqlExportView()
+        public CosmosSqlSequentialExportView()
         {
             InitializeComponent();
         }

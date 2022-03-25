@@ -8,13 +8,15 @@
 
         public static string SourceManager = "SourceManagerView";
 
-        public static string BlankSource = "BlankSourceView";
-
         public static string CsvImport = "CsvImportView";
 
         public static string JsonImport = "JsonImportView";
 
         public static string TargetManager = "TargetManagerView";
+
+        public static string CosmosSqlSequentialExport = "CosmosSqlSequentialExportView";
+
+        public static string CosmosSqlBulkExport = "CosmosSqlBulkExportView";
 
         public static string Advanced = "AdvancedView";
 

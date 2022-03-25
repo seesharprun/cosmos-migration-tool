@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="Microsoft.DataTransfer.Cosmos.JsonImportModule.Views.AddURLDialogView"
+﻿<UserControl x:Class="Microsoft.DataTransfer.Cosmos.CsvImportModule.Views.AddCsvURLDialogView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:prism="http://prismlibrary.com/"

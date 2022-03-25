@@ -6,10 +6,29 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="Azure.Storage.Blobs" Version="12.11.0" />
     <PackageReference Include="Prism.Wpf" Version="8.1.97" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Microsoft.DataTransfer.Cosmos.Core\Microsoft.DataTransfer.Cosmos.Core.csproj" />
     <ProjectReference Include="..\Microsoft.DataTransfer.Cosmos.CsvImportServiceModule\Microsoft.DataTransfer.Cosmos.CsvImportServiceModule.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Views\AddCsvAzureStorageBlobDialogView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\AddCsvURLDialogView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Views\AddCsvAzureStorageBlobDialogView.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\AddCsvURLDialogView.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
 </Project>

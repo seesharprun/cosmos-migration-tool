@@ -1,4 +1,5 @@
 using Microsoft.DataTransfer.Cosmos.Core;
+using Microsoft.DataTransfer.Cosmos.CsvImportModule.ViewModels;
 using Microsoft.DataTransfer.Cosmos.CsvImportModule.Views;
 using Prism.Ioc;
 using Prism.Modularity;
@@ -16,6 +17,8 @@ namespace Microsoft.DataTransfer.Cosmos.CsvImportModule
 
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            containerRegistry.RegisterDialog<AddCsvURLDialogView, AddCsvURLDialogViewModel>(DialogNames.AddCsvURLDialog);
+            containerRegistry.RegisterDialog<AddCsvAzureStorageBlobDialogView, AddCsvAzureStorageBlobDialogViewModel>(DialogNames.AddCsvAzureStorageBlobDialog);
         }
     }
 }

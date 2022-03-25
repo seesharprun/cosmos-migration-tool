@@ -11,11 +11,11 @@ namespace Microsoft.DataTransfer.Cosmos.CosmosSqlExportModule
         public void OnInitialized(IContainerProvider containerProvider)
         {
             var regionManager = containerProvider.Resolve<IRegionManager>();
-            regionManager.RegisterViewWithRegion<CosmosSqlExportView>(RegionNames.SourceContent);
+            regionManager.RegisterViewWithRegion<CosmosSqlSequentialExportView>(RegionNames.TargetContent);
+            regionManager.RegisterViewWithRegion<CosmosSqlBulkExportView>(RegionNames.TargetContent);
         }
 
         public void RegisterTypes(IContainerRegistry containerRegistry)
-        {
-        }
+        { }
     }
 }

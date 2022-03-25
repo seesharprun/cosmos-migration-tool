@@ -3,12 +3,14 @@ using Microsoft.DataTransfer.Cosmos.JsonImportModule.Models;
 using Microsoft.Win32;
 using Prism.Commands;
 using Prism.Mvvm;
+using Prism.Regions;
 using Prism.Services.Dialogs;
 using System.Collections.ObjectModel;
 
 namespace Microsoft.DataTransfer.Cosmos.JsonImportModule.ViewModels
 {
-    public class JsonImportViewModel : BindableBase
+    // TODO: Implement validation
+    public class JsonImportViewModel : BindableBase, INavigationAware
     {
         private IDialogService _dialogService;
 
@@ -18,6 +20,15 @@ namespace Microsoft.DataTransfer.Cosmos.JsonImportModule.ViewModels
 
             IsCompressed = false;
         }
+
+        public bool IsNavigationTarget(NavigationContext navigationContext) =>
+            true;
+
+        public void OnNavigatedTo(NavigationContext navigationContext)
+        { }
+
+        public void OnNavigatedFrom(NavigationContext navigationContext)
+        { }
 
         private bool _isCompressed = false;
         public bool IsCompressed
@@ -82,7 +93,7 @@ namespace Microsoft.DataTransfer.Cosmos.JsonImportModule.ViewModels
 
         public void AddURLItemItemExecute()
         {
-            _dialogService.ShowDialog(DialogNames.AddURLDialog, (result) =>
+            _dialogService.ShowDialog(DialogNames.AddJsonURLDialog, (result) =>
             {
                 if (result.Result == ButtonResult.OK)
                 {
@@ -108,7 +119,7 @@ namespace Microsoft.DataTransfer.Cosmos.JsonImportModule.ViewModels
 
         public void AddAzureStorageBlobItemItemExecute()
         {
-            _dialogService.ShowDialog(DialogNames.AddAzureStorageBlobDialog, (result) =>
+            _dialogService.ShowDialog(DialogNames.AddJsonAzureStorageBlobDialog, (result) =>
             {
                 if (result.Result == ButtonResult.OK)
                 {

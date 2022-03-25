@@ -3,12 +3,36 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:prism="http://prismlibrary.com/"
+             xmlns:core="clr-namespace:Microsoft.DataTransfer.Cosmos.Core;assembly=Microsoft.DataTransfer.Cosmos.Core" 
              mc:Ignorable="d" d:DesignHeight="415" d:DesignWidth="600">
-    <TextBlock 
-            FontSize="45" 
-            FontWeight="Bold"
-            Foreground="Blue"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            Text="Target information view" />
+    <UserControl.Resources>
+        <Style x:Key="SelectorTitle" TargetType="{x:Type Label}">
+            <Setter Property="FontWeight" Value="Bold" />
+        </Style>
+        <Style x:Key="ItemContainerStyle" TargetType="{x:Type ListBoxItem}">
+            <Setter Property="AutomationProperties.Name" Value="{Binding Name}"/>
+        </Style>
+    </UserControl.Resources>
+    <DockPanel>
+        <StackPanel
+            DockPanel.Dock="Top"
+            Orientation="Vertical">
+            <Label
+                Style="{StaticResource SelectorTitle}"
+                Content="Export to:" />
+            <ComboBox
+                ItemsSource="{Binding Targets, Mode=OneWay}"
+                SelectedValue="{Binding CurrentTargetView, FallbackValue={x:Static core:ViewNames.CosmosSqlSequentialExport}}"
+                SelectedValuePath="View"
+                DisplayMemberPath="Name"
+                ItemContainerStyle="{StaticResource ItemContainerStyle}"
+                IsReadOnly="True"
+                IsSynchronizedWithCurrentItem="True"
+                IsEditable="False" />
+        </StackPanel>
+        <ContentControl 
+            DockPanel.Dock="Bottom"
+            prism:RegionManager.RegionName="{x:Static core:RegionNames.TargetContent}" />
+    </DockPanel>
 </UserControl>

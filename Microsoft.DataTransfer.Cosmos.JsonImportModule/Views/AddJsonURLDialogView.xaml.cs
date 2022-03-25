@@ -2,9 +2,9 @@
 
 namespace Microsoft.DataTransfer.Cosmos.JsonImportModule.Views
 {
-    public partial class AddAzureStorageBlobDialogView : UserControl
+    public partial class AddJsonURLDialogView : UserControl
     {
-        public AddAzureStorageBlobDialogView()
+        public AddJsonURLDialogView()
         {
             InitializeComponent();
         }

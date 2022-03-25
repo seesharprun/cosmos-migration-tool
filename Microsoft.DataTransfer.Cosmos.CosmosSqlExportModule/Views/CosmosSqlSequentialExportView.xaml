@@ -1,0 +1,52 @@
+﻿<UserControl x:Class="Microsoft.DataTransfer.Cosmos.CosmosSqlExportModule.Views.CosmosSqlSequentialExportView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:s="clr-namespace:System;assembly=netstandard"
+             mc:Ignorable="d" d:DesignHeight="365" d:DesignWidth="600">
+    <UserControl.Resources>
+        <Style x:Key="InputPanel" TargetType="{x:Type StackPanel}">
+            <Setter Property="Margin" Value="0,5,0,0" />
+        </Style>
+        <Style x:Key="SideButton" TargetType="{x:Type Button}">
+            <Setter Property="Margin" Value="5,0,0,0" />
+            <Setter Property="Padding" Value="10,0,10,0" />
+        </Style>
+    </UserControl.Resources>
+    <StackPanel
+        Style="{StaticResource InputPanel}"
+        Orientation="Vertical">
+        <Label 
+            Content="Connection string" />
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <TextBox
+                Grid.Column="0"
+                Text="{Binding ConnectionString, FallbackValue={x:Static s:String.Empty}}" />
+            <Button
+                Grid.Column="1"
+                Style="{StaticResource SideButton}"
+                Content="Verify" />
+        </Grid>
+        <Label 
+            Content="Container" />
+        <TextBox 
+            Text="{Binding Container, FallbackValue={x:Static s:String.Empty}}" />
+        <Label 
+            Content="Partition key" />
+        <TextBox 
+            Text="{Binding PartitionKey, FallbackValue={x:Static s:String.Empty}}" />
+        <Label 
+            Content="Container throughput" />
+        <TextBox 
+            Text="{Binding ContainerThroughput, FallbackValue={x:Static s:String.Empty}}" />
+        <Label 
+            Content="Unique identifier field" />
+        <TextBox 
+            Text="{Binding UniqueIdentifierFieldName, FallbackValue={x:Static s:String.Empty}}" />
+    </StackPanel>
+</UserControl>

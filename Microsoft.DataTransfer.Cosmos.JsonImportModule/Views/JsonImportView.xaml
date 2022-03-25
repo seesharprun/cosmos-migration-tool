@@ -139,11 +139,27 @@
             HorizontalContentAlignment="Stretch"
             ItemsSource="{Binding Items}" 
             Style="{StaticResource SourceItemList}" />
-        <CheckBox
+        <StackPanel 
             Grid.Row="2"
-            Style="{StaticResource SingleLineOptionElement}"
-            Content="Decompress GZIP data"
-            IsChecked="{Binding IsCompressed, FallbackValue=False}"
-            Visibility="Hidden" />
+            Orientation="Vertical">
+            <CheckBox
+                Style="{StaticResource SingleLineOptionElement}"
+                IsChecked="{Binding IsCompressed, FallbackValue=False}">
+                <CheckBox.Content>
+                    <TextBlock>
+                        <Run>
+                            Decompress
+                        </Run>
+                        <Run 
+                            FontWeight="Bold">
+                            GZIP
+                        </Run>
+                        <Run>
+                            data
+                        </Run>
+                    </TextBlock>
+                </CheckBox.Content>
+            </CheckBox>
+        </StackPanel>
     </Grid>
 </UserControl>

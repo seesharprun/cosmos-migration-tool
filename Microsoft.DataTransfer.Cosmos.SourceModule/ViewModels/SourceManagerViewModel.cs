@@ -39,8 +39,7 @@ namespace Microsoft.DataTransfer.Cosmos.SourceModule.ViewModels
         }
 
         public void OnNavigatedFrom(NavigationContext navigationContext)
-        {
-        }
+        { }
 
         public ObservableCollection<Source> Sources { get; private set; } = new();
 

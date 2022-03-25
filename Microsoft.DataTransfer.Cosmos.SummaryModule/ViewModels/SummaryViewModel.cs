@@ -28,7 +28,6 @@ namespace Microsoft.DataTransfer.Cosmos.SummaryModule.ViewModels
         }
 
         public void OnNavigatedFrom(NavigationContext navigationContext)
-        {
-        }
+        { }
     }
 }

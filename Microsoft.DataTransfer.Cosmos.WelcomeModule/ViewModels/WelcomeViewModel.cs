@@ -32,8 +32,7 @@ namespace Microsoft.DataTransfer.Cosmos.WelcomeModule.ViewModels
         }
 
         public void OnNavigatedFrom(NavigationContext context)
-        {
-        }
+        { }
 
         public DelegateCommand<string> NavigateBrowserCommand =>
             new(NavigateBrowserExecute);

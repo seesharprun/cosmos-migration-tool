@@ -1,13 +1,13 @@
 ﻿using Azure.Storage.Blobs;
 using Azure.Storage.Sas;
-using Microsoft.DataTransfer.Cosmos.JsonImportModule.Models;
+using Microsoft.DataTransfer.Cosmos.CsvImportModule.Models;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Services.Dialogs;
 
-namespace Microsoft.DataTransfer.Cosmos.JsonImportModule.ViewModels
+namespace Microsoft.DataTransfer.Cosmos.CsvImportModule.ViewModels
 {
-    internal class AddAzureStorageBlobDialogViewModel : BindableBase, IDialogAware
+    internal class AddCsvAzureStorageBlobDialogViewModel : BindableBase, IDialogAware
     {
         public string Title => "Add Azure Storage Blob(s)";
 
@@ -67,6 +67,7 @@ namespace Microsoft.DataTransfer.Cosmos.JsonImportModule.ViewModels
         {
             DialogParameters parameters = new DialogParameters();
 
+            // TODO: Validate format of values
             BlobClient client = new(ConnectionString, ContainerName, BlobName);
             // TODO: Catch RequestFailedException (wrong connection string)
             if (await client.ExistsAsync())

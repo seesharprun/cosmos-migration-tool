@@ -1,4 +1,5 @@
 using Microsoft.DataTransfer.Cosmos.Core;
+using Microsoft.DataTransfer.Cosmos.TargetModule.Services;
 using Microsoft.DataTransfer.Cosmos.TargetModule.Views;
 using Prism.Ioc;
 using Prism.Modularity;
@@ -16,6 +17,7 @@ namespace Microsoft.DataTransfer.Cosmos.TargetModule
 
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            containerRegistry.Register<ITargetService, TargetService>();
         }
     }
 }

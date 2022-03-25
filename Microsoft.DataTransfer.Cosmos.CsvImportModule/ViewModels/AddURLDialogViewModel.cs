@@ -1,11 +1,11 @@
-﻿using Microsoft.DataTransfer.Cosmos.JsonImportModule.Models;
+﻿using Microsoft.DataTransfer.Cosmos.CsvImportModule.Models;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Services.Dialogs;
 
-namespace Microsoft.DataTransfer.Cosmos.JsonImportModule.ViewModels
+namespace Microsoft.DataTransfer.Cosmos.CsvImportModule.ViewModels
 {
-    public class AddURLDialogViewModel : BindableBase, IDialogAware
+    public class AddCsvURLDialogViewModel : BindableBase, IDialogAware
     {
         public string Title => "Add URL(s)";
 
