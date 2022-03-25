@@ -3,12 +3,54 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:s="clr-namespace:System;assembly=netstandard"
+             xmlns:r="clr-namespace:System;assembly=netstandard"
+             xmlns:m="clr-namespace:Microsoft.DataTransfer.Cosmos.AdvancedModule.Models"
              mc:Ignorable="d" d:DesignHeight="415" d:DesignWidth="600">
-    <TextBlock 
-            FontSize="45" 
-            FontWeight="Bold"
-            Foreground="Orange"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            Text="Advanced view" />
+    <UserControl.Resources>
+        <Style x:Key="InputPanel" TargetType="{x:Type StackPanel}">
+            <Setter Property="Margin" Value="0,5,0,0" />
+        </Style>
+        <Style x:Key="SideButton" TargetType="{x:Type Button}">
+            <Setter Property="Margin" Value="5,0,0,0" />
+            <Setter Property="Padding" Value="10,0,10,0" />
+        </Style>
+        <Style x:Key="ItemContainerStyle" TargetType="{x:Type ListBoxItem}">
+            <Setter Property="AutomationProperties.Name" Value="{Binding}"/>
+        </Style>
+    </UserControl.Resources>
+    <StackPanel
+        Style="{StaticResource InputPanel}"
+        Orientation="Vertical">
+        <Label 
+            Content="Error log file" />
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <TextBox
+                Grid.Column="0"
+                Text="{Binding ErrorLogFile, FallbackValue={x:Static s:String.Empty}}" />
+            <Button
+                Grid.Column="1"
+                Style="{StaticResource SideButton}"
+                Command="{Binding SelectLogFileCommand}"
+                Content="Select..." />
+        </Grid>
+        <Label 
+            Content="Detailed error information" />
+        <ComboBox
+                ItemsSource="{Binding ErrorLevelStrings, Mode=OneWay}"
+                SelectedItem="{Binding CurrentErrorLevelString, FallbackValue=None}"
+                ItemContainerStyle="{StaticResource ItemContainerStyle}"
+                IsReadOnly="True"
+                IsSynchronizedWithCurrentItem="True"
+                IsEditable="False" />
+        <Separator 
+            Margin="0,10" />
+        <Button 
+            Content="Activate remainder of navigation" 
+            Command="{Binding ActivateNavigationCommand}" />
+    </StackPanel>
 </UserControl>

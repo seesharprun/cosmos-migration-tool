@@ -1,4 +1,5 @@
-﻿using Microsoft.DataTransfer.Cosmos.AdvancedModule.Views;
+﻿using Microsoft.DataTransfer.Cosmos.AdvancedModule.Services;
+using Microsoft.DataTransfer.Cosmos.AdvancedModule.Views;
 using Microsoft.DataTransfer.Cosmos.Core;
 using Prism.Ioc;
 using Prism.Modularity;
@@ -16,6 +17,7 @@ namespace Microsoft.DataTransfer.Cosmos.AdvancedModule
 
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            containerRegistry.Register<IErrorLevelService, ErrorLevelService>();
         }
     }
 }

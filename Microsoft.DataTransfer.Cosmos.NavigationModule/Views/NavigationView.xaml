@@ -40,6 +40,11 @@
                     </Style.Resources>
                     <Setter Property="Height" Value="25" />
                     <Setter Property="AutomationProperties.Name" Value="{Binding Name}" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Enabled, UpdateSourceTrigger=PropertyChanged}" Value="False">
+                            <Setter Property="IsEnabled" Value="False" />
+                        </DataTrigger>
+                    </Style.Triggers>
                 </Style>
                 <Style TargetType="{x:Type TextBlock}">
                     <Setter Property="Margin" Value="10,0" />

@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:prism="http://prismlibrary.com/"
-             xmlns:core="clr-namespace:Microsoft.DataTransfer.Cosmos.Core;assembly=Microsoft.DataTransfer.Cosmos.Core" 
+             xmlns:c="clr-namespace:Microsoft.DataTransfer.Cosmos.Core;assembly=Microsoft.DataTransfer.Cosmos.Core" 
              mc:Ignorable="d" d:DesignHeight="415" d:DesignWidth="600">
     <UserControl.Resources>
         <Style x:Key="SelectorTitle" TargetType="{x:Type Label}">
@@ -23,7 +23,7 @@
                 Content="Import from:" />
             <ComboBox
                 ItemsSource="{Binding Sources, Mode=OneWay}"
-                SelectedValue="{Binding CurrentSourceView, FallbackValue={x:Static core:ViewNames.JsonImport}}"
+                SelectedValue="{Binding CurrentSourceView, FallbackValue={x:Static c:ViewNames.JsonImport}}"
                 SelectedValuePath="View"
                 DisplayMemberPath="Name"
                 ItemContainerStyle="{StaticResource ItemContainerStyle}"
@@ -33,6 +33,6 @@
         </StackPanel>
         <ContentControl 
             DockPanel.Dock="Bottom"
-            prism:RegionManager.RegionName="{x:Static core:RegionNames.SourceContent}" />
+            prism:RegionManager.RegionName="{x:Static c:RegionNames.SourceContent}" />
     </DockPanel>
 </UserControl>

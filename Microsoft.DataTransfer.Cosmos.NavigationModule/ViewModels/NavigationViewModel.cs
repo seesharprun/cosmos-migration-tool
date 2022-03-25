@@ -22,6 +22,7 @@ namespace Microsoft.DataTransfer.Cosmos.NavigationModule.ViewModels
             _linkService = linkService;
 
             _eventAggregator.GetEvent<UpdateNavigationEvent>().Subscribe(OnUpdateNavigation);
+            _eventAggregator.GetEvent<ActivateNavigationEvent>().Subscribe(OnActivateNavigation);
 
             _regionManager.RequestNavigate(RegionNames.Content, ViewNames.Welcome);
 
@@ -35,6 +36,16 @@ namespace Microsoft.DataTransfer.Cosmos.NavigationModule.ViewModels
             if (view is not null)
             {
                 CurrentLink = Links.Single(s => s.View == view);
+            }
+        }
+
+        private void OnActivateNavigation((string View, bool Enabled) payload)
+        {
+            Link? match = Links.SingleOrDefault<Link>(l => l.View == payload.View);
+
+            if (match is not null)
+            {
+                Links[Links.IndexOf(match)] = match with { Enabled = payload.Enabled };
             }
         }
 
